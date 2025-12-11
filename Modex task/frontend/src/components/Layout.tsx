@@ -12,14 +12,14 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     ];
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col">
-            <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div className="min-h-screen flex flex-col">
+            <nav className="glass sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="flex-shrink-0 flex items-center">
-                                <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 animate-gradient">
-                                    TicketMaster
+                                <span className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 animate-gradient drop-shadow-lg">
+                                    MOVIEX
                                 </span>
                             </div>
                             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -31,10 +31,10 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                                             key={item.path}
                                             to={item.path}
                                             className={clsx(
-                                                'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors duration-200',
+                                                'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-all duration-200',
                                                 isActive
-                                                    ? 'border-blue-500 text-gray-900'
-                                                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                                                    ? 'border-indigo-400 text-indigo-300'
+                                                    : 'border-transparent text-gray-400 hover:text-white hover:border-gray-500'
                                             )}
                                         >
                                             <Icon className="w-4 h-4 mr-2" />

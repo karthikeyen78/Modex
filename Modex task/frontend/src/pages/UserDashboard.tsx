@@ -30,21 +30,21 @@ export const UserDashboard: React.FC = () => {
 
     return (
         <Layout>
-            <div className="text-center max-w-2xl mx-auto mb-12">
-                <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
+            <div className="text-center max-w-2xl mx-auto mb-16 pt-8">
+                <h1 className="text-5xl font-black text-white tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white to-purple-300 drop-shadow-sm">
                     Book Your Next Experience
                 </h1>
-                <p className="text-lg text-gray-600">
+                <p className="text-xl text-indigo-200/80 font-medium">
                     Secure seats for movies, trips, and events in real-time.
                 </p>
             </div>
 
-            <div className="mb-8 max-w-md mx-auto relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <div className="mb-12 max-w-xl mx-auto relative group">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-indigo-400 transition-colors" />
                 <input
                     type="text"
                     placeholder="Search shows..."
-                    className="w-full pl-10 pr-4 py-3 rounded-full border border-gray-200 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-shadow"
+                    className="w-full pl-12 pr-4 py-4 rounded-2xl input-glass outline-none transition-all duration-300 shadow-lg"
                     value={filter}
                     onChange={(e) => setFilter(e.target.value)}
                 />
@@ -52,16 +52,18 @@ export const UserDashboard: React.FC = () => {
 
             {loading ? (
                 <div className="text-center py-20">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-4 border-indigo-500/30 border-t-indigo-500 mx-auto"></div>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {filteredShows.map((show) => (
-                        <ShowCard key={show.id} show={show} />
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    {filteredShows.map((show, idx) => (
+                        <div key={show.id} style={{ animationDelay: `${idx * 100}ms` }} className="animate-[fadeInUp_0.5s_ease-out_forwards] opacity-0">
+                            <ShowCard show={show} />
+                        </div>
                     ))}
                     {filteredShows.length === 0 && (
-                        <div className="col-span-full text-center py-10 text-gray-500">
-                            No shows found matching your search.
+                        <div className="col-span-full text-center py-20 text-gray-400 glass rounded-2xl">
+                            <p className="text-lg">No shows found matching your search.</p>
                         </div>
                     )}
                 </div>

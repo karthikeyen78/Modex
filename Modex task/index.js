@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const cors = require('cors'); // Added CORS
+app.use(cors()); // Enable CORS for all routes
 const adminRoutes = require("./routes/admin");
 const userRoutes = require("./routes/user");
 const { startBookingExpiryJob } = require("./jobs/bookingExpiry");
