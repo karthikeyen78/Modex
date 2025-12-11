@@ -40,3 +40,9 @@ A full-stack ticket booking application featuring a Node.js/Express backend and 
 
 - **Backend**: Ready for Render/Railway/Heroku.
 - **Frontend**: Ready for Vercel/Netlify.
+
+## Documentation
+
+- **[System Design & Architecture](./SYSTEM_DESIGN.md)**: Detailed breakdown of scalability, concurrency, and architecture.
+- **[Technical API Design](./TECHNICAL_DESIGN.md)**: API contracts and database schema.
+
