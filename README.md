@@ -93,5 +93,5 @@ If `row_count` is 0, the booking fails. This avoids heavy DB locks but requires 
 1.  Connect GitHub Repo.
 2.  Set Root Directory: `frontend`.
 3.  Set Build Command: `npm run build`.
-4.  Env Vars: `VITE_API_URL` (Link to backend URL).
+4.  Env Vars: [`VITE_API_URL` (Link to backend URL).](https://modex-omega.vercel.app/)
 
