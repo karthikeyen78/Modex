@@ -107,16 +107,13 @@ exports.checkExpiredBookings = async () => {
        RETURNING *`
     );
 
-    // If any bookings were expired, update the show's booked_seats
+    // Note: In the current 'bookSeats' implementation, bookings are either CONFIRMED (seats reserved)
+    // or FAILED (no seats). PENDING is a transient state or a placeholder.
+    // If we ever support "Hold/Reserve" where PENDING takes up seats, we should re-enable the decrement logic.
+    // For now, we just mark them FAILED to clean up.
+    
     if (result.rowCount > 0) {
-      for (const booking of result.rows) {
-        await client.query(
-          `UPDATE shows 
-           SET booked_seats = booked_seats - $1 
-           WHERE id = $2`,
-          [booking.seat_count, booking.show_id]
-        );
-      }
+        console.log(`Expired ${result.rowCount} bookings.`);
     }
 
     await client.query("COMMIT");
