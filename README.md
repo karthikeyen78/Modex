@@ -1,3 +1,33 @@
+# System Design & Architecture Document
+
+## 1. High-Level Architecture
+
+The system follows a classic **3-Tier Architecture**:
+
+1.  **Presentation Layer (Frontend)**:
+    - Built with **React 19**, **TypeScript**, and **TailwindCSS**.
+    - Hosted on Vercel/Netlify (Static content + Client-side routing).
+    - Communicates with the backend via RESTful APIs using `Axios`.
+    - **Key Components**:
+        - `AdminDashboard`: Show creation and management.
+        - `UserDashboard`: browsing available shows.
+        - `BookingPage`: Visual seat selection and booking.
+
+2.  **Application Layer (Backend)**:
+    - Built with **Node.js** and **Express.js**.
+    - Stateless REST API design allows for easy horizontal scaling.
+    - Handles business logic: Validation, Booking orchestration, Expiry jobs.
+    - **Concurrency Control**: Implements pessimistic locking to prevent overbooking.
+
+3.  **Data Layer (Database)**:
+    - **PostgreSQL**: Relational database for ACID compliance.
+    - Stores critical data: `Shows`, `Bookings`.
+
+## 2. Scalability Strategy
+
+To scale this system to production grades (like BookMyShow/RedBus), the following strategies are proposed:
+
+### A. Database Scaling
 - **Read Replicas**: Separate Read/Write operations. Use a primary DB for Booking (Writes) and Read Replicas for `GET /shows` (Reads). This offloads the heavy read traffic from the primary node.
 - **Connection Pooling**: Use `pg-pool` (already implemented) to manage DB connections efficiently.
 - **Sharding**: For massive scale, shard the `bookings` table by `show_id` or `region` to distribute data across multiple physical machines.
@@ -64,3 +94,4 @@ If `row_count` is 0, the booking fails. This avoids heavy DB locks but requires 
 2.  Set Root Directory: `frontend`.
 3.  Set Build Command: `npm run build`.
 4.  Env Vars: `VITE_API_URL` (Link to backend URL).
+
